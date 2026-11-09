@@ -1,0 +1,52 @@
+{
+  "schema": "wlf.aggregate-summary.v1",
+  "experiment": "ESP8266 and ESP32-S3 compatibility at 100 cm",
+  "date": "2026-11-06",
+  "channel": 1,
+  "packet_size_bytes": 20,
+  "interval_ms": 20,
+  "distance_cm": 100,
+  "condition": "parallel antennas; non-metal surface; no obstacle",
+  "repetitions": 2,
+  "packets_per_direction_per_repetition": 1000,
+  "source_summaries": [
+    "experiments/results/espnow_bidirectional_20261106_173205_summary.json",
+    "experiments/results/espnow_bidirectional_20261106_173338_summary.json"
+  ],
+  "directions": {
+    "node8266_to_node32s3": {
+      "accepted_by_sender": 2000,
+      "probe_received_by_peer": 1993,
+      "matched_ack_received": 1990,
+      "inferred_probe_loss": 7,
+      "inferred_ack_return_loss": 3,
+      "probe_delivery_pct": 99.65,
+      "application_ack_success_pct": 99.5,
+      "rtt_min_ms": 2,
+      "rtt_average_by_run_ms": [4, 4],
+      "rtt_max_ms": 15
+    },
+    "node32s3_to_node8266": {
+      "accepted_by_sender": 2000,
+      "probe_received_by_peer": 1981,
+      "matched_ack_received": 1847,
+      "inferred_probe_loss": 19,
+      "inferred_ack_return_loss": 134,
+      "probe_delivery_pct": 99.05,
+      "application_ack_success_pct": 92.35,
+      "rtt_min_ms": 3,
+      "rtt_average_by_run_ms": [4, 4],
+      "rtt_max_ms": 20
+    }
+  },
+  "queue_drops": 0,
+  "invalid_packets": 0,
+  "duplicates": 0,
+  "out_of_order": 0,
+  "result": "compatible_with_ack_return_loss_at_100cm",
+  "interpretation": [
+    "direct probe delivery remained above 99 percent in both directions",
+    "the dominant failure was the immediate ESP8266 ACK returning to ESP32-S3",
+    "a configurable ACK turnaround delay should be tested before using ACK loss as a failover trigger"
+  ]
+}

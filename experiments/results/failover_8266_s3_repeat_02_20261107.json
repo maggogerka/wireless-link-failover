@@ -1,0 +1,82 @@
+{
+  "schema": "wlf.experiment-run.v1",
+  "test_id": "failover_8266_s3_repeat_02_20261107",
+  "date": "2026-11-07",
+  "valid": true,
+  "repeat": 2,
+  "sender": "node8266",
+  "fault_receiver": "node32s3",
+  "distance_cm": 100,
+  "access_point": {
+    "ssid": "Lab-2G",
+    "band_ghz": 2.4,
+    "channel": 6
+  },
+  "configuration": {
+    "probe_interval_ms": 500,
+    "window_ms": 5000,
+    "fallback_loss_pct": 30,
+    "recovery_success_pct": 90,
+    "bad_windows_required": 2,
+    "good_windows_required": 3,
+    "recovery_probe_offset_ms": 250
+  },
+  "baseline": {
+    "complete_windows": 6,
+    "espnow_probes": 60,
+    "espnow_acks": 60,
+    "success_pct": 100.0
+  },
+  "controlled_fault": {
+    "type": "espnow_ack_suppression",
+    "enabled_at": "2026-11-07T00:37:52.591+03:00",
+    "disabled_at": "2026-11-07T00:38:12.727+03:00",
+    "duration_ms": 20136
+  },
+  "fallback": {
+    "transition_at": "2026-11-07T00:38:02.770+03:00",
+    "from": "esp-now",
+    "to": "udp",
+    "reason": "espnow_ack_loss_threshold",
+    "reaction_from_fault_ms": 10179,
+    "reported_evidence_duration_ms": 5000,
+    "degradation_windows": [
+      {
+        "espnow_probes": 10,
+        "espnow_acks": 0,
+        "espnow_success_pct": 0
+      },
+      {
+        "espnow_probes": 10,
+        "espnow_acks": 0,
+        "espnow_success_pct": 0
+      }
+    ],
+    "combined_espnow_success_pct": 0.0,
+    "combined_espnow_loss_pct": 100.0
+  },
+  "udp_reserve": {
+    "time_in_udp_ms": 24996,
+    "observed_probes": 50,
+    "observed_acks": 49,
+    "success_pct": 98.0
+  },
+  "recovery": {
+    "transition_at": "2026-11-07T00:38:27.766+03:00",
+    "from": "udp",
+    "to": "esp-now",
+    "reason": "espnow_recovery_threshold",
+    "reaction_from_fault_removal_ms": 15039,
+    "final_consecutive_good_windows": 3,
+    "final_good_window_probes": 15,
+    "final_good_window_acks": 15,
+    "final_good_window_success_pct": 100.0
+  },
+  "final_state": {
+    "active_transport": "esp-now",
+    "automatic": true,
+    "switch_count": 2
+  },
+  "interpretation": "Valid controlled repetition in the ESP8266-to-ESP32-S3 direction. The baseline was stable, fallback occurred after two fully degraded windows, UDP delivered 98% of observed application ACKs, and recovery completed after the minimum three qualifying windows.",
+  "raw_log": "experiments/raw/serial_20261107_002514.jsonl"
+}

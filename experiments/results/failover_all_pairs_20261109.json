@@ -1,0 +1,306 @@
+{
+  "schema": "wlf.all-pairs-failover-matrix.v1",
+  "matrix_id": "failover_all_pairs_standardized_20261109",
+  "date": "2026-11-09",
+  "classification": "all_pairwise_transition_matrix_with_documented_timing_deviation",
+  "common_configuration": {
+    "probe_interval_ms": 470,
+    "window_ms": 5000,
+    "fallback_loss_pct": 30,
+    "recovery_success_pct": 80,
+    "bad_windows_required": 2,
+    "good_windows_required": 3,
+    "recovery_probe_offset_ms": 235,
+    "recovery_probe_interval_ms": 940,
+    "recovery_probe_guard_ms": 470,
+    "espnow_stabilization_windows": 3,
+    "wifi_power_save": false
+  },
+  "conditions": {
+    "cycles_per_pair": 5,
+    "distance_cm": 100,
+    "ssid": "Lab-2G",
+    "band_ghz": 2.4,
+    "channel": 6
+  },
+  "overall": {
+    "hardware_pairs": 3,
+    "complete_cycles": 15,
+    "successful_fallbacks": 15,
+    "successful_recoveries": 15,
+    "baseline_espnow_probes": 843,
+    "baseline_espnow_acks": 843,
+    "baseline_espnow_success_pct": 100.0,
+    "fallback_reaction_ms": {
+      "minimum": 6678,
+      "average": 8613.4,
+      "median": 8405,
+      "maximum": 11500,
+      "sample_standard_deviation": 1575.28
+    },
+    "recovery_reaction_ms": {
+      "minimum": 13848,
+      "average": 15707,
+      "median": 14851,
+      "maximum": 18392,
+      "sample_standard_deviation": 1732.125
+    },
+    "udp_reserve": {
+      "observed_probes": 374,
+      "observed_acks": 323,
+      "success_pct": 86.364
+    },
+    "final_recovery_windows": {
+      "espnow_probes": 240,
+      "espnow_acks": 232,
+      "success_pct": 96.667
+    },
+    "time_in_udp_ms": {
+      "minimum": 15021,
+      "average": 23339.333,
+      "median": 20005,
+      "maximum": 40036,
+      "sample_standard_deviation": 6183.438
+    }
+  },
+  "pairs": [
+    {
+      "key": "esp8266_esp32",
+      "label": "ESP8266↔ESP32",
+      "short_label": "8266–32",
+      "color": "#2563EB",
+      "source_summary": "experiments/results/failover_8266_32_controlled_5x_20261108_summary.json",
+      "configuration": {
+        "probe_interval_ms": 470,
+        "window_ms": 5000,
+        "fallback_loss_pct": 30,
+        "recovery_success_pct": 80,
+        "bad_windows_required": 2,
+        "good_windows_required": 3,
+        "recovery_probe_offset_ms": 235,
+        "recovery_probe_interval_ms": 940,
+        "recovery_probe_guard_ms": 470,
+        "espnow_stabilization_windows": 3,
+        "wifi_power_save": false
+      },
+      "valid_runs": 5,
+      "successful_fallbacks": 5,
+      "successful_recoveries": 5,
+      "baseline_espnow_success_pct": 100.0,
+      "udp_success_pct": 90.226,
+      "fallback_reaction_ms": [
+        6738,
+        8295,
+        8077,
+        8657,
+        6678
+      ],
+      "fallback_reaction_ms_descriptive": {
+        "minimum": 6678,
+        "average": 7689,
+        "median": 8077,
+        "maximum": 8657,
+        "sample_standard_deviation": 919.419
+      },
+      "recovery_reaction_ms": [
+        14304,
+        14165,
+        14472,
+        18278,
+        14851
+      ],
+      "recovery_reaction_ms_descriptive": {
+        "minimum": 14165,
+        "average": 15214,
+        "median": 14472,
+        "maximum": 18278,
+        "sample_standard_deviation": 1731.974
+      },
+      "time_in_udp_ms": [
+        30033,
+        19998,
+        20003,
+        25015,
+        30017
+      ],
+      "time_in_udp_ms_descriptive": {
+        "minimum": 19998,
+        "average": 25013.2,
+        "median": 25015,
+        "maximum": 30033,
+        "sample_standard_deviation": 5012.254
+      },
+      "runs": [
+        "experiments/results/failover_8266_32_repeat_01_20261108.json",
+        "experiments/results/failover_8266_32_repeat_02_20261108.json",
+        "experiments/results/failover_8266_32_repeat_03_20261108.json",
+        "experiments/results/failover_8266_32_repeat_04_20261108.json",
+        "experiments/results/failover_8266_32_repeat_05_20261108.json"
+      ],
+      "protocol_note": "protocol compliant"
+    },
+    {
+      "key": "esp8266_esp32s3",
+      "label": "ESP8266↔ESP32-S3",
+      "short_label": "8266–S3",
+      "color": "#EA580C",
+      "source_summary": "experiments/results/failover_8266_s3_standardized_5x_20261109_summary.json",
+      "configuration": {
+        "probe_interval_ms": 470,
+        "window_ms": 5000,
+        "fallback_loss_pct": 30,
+        "recovery_success_pct": 80,
+        "bad_windows_required": 2,
+        "good_windows_required": 3,
+        "recovery_probe_offset_ms": 235,
+        "recovery_probe_interval_ms": 940,
+        "recovery_probe_guard_ms": 470,
+        "espnow_stabilization_windows": 3,
+        "wifi_power_save": false
+      },
+      "valid_runs": 5,
+      "successful_fallbacks": 5,
+      "successful_recoveries": 5,
+      "baseline_espnow_success_pct": 100.0,
+      "udp_success_pct": 96.992,
+      "fallback_reaction_ms": [
+        7430,
+        6802,
+        8585,
+        8405,
+        10200
+      ],
+      "fallback_reaction_ms_descriptive": {
+        "minimum": 6802,
+        "average": 8284.4,
+        "median": 8405,
+        "maximum": 10200,
+        "sample_standard_deviation": 1294.405
+      },
+      "recovery_reaction_ms": [
+        13848,
+        16204,
+        14157,
+        14488,
+        17448
+      ],
+      "recovery_reaction_ms_descriptive": {
+        "minimum": 13848,
+        "average": 15229,
+        "median": 14488,
+        "maximum": 17448,
+        "sample_standard_deviation": 1539.481
+      },
+      "time_in_udp_ms": [
+        19969,
+        40036,
+        19999,
+        19975,
+        25001
+      ],
+      "time_in_udp_ms_descriptive": {
+        "minimum": 19969,
+        "average": 24996,
+        "median": 19999,
+        "maximum": 40036,
+        "sample_standard_deviation": 8684.077
+      },
+      "runs": [
+        "experiments/results/failover_8266_s3_standardized_repeat_01_20261109.json",
+        "experiments/results/failover_8266_s3_standardized_repeat_02_20261109.json",
+        "experiments/results/failover_8266_s3_standardized_repeat_03_20261109.json",
+        "experiments/results/failover_8266_s3_standardized_repeat_04_20261109.json",
+        "experiments/results/failover_8266_s3_standardized_repeat_05_20261109.json"
+      ],
+      "protocol_note": "settings standardized; preparation timing deviation documented"
+    },
+    {
+      "key": "esp32_esp32s3",
+      "label": "ESP32↔ESP32-S3",
+      "short_label": "32–S3",
+      "color": "#16A34A",
+      "source_summary": "experiments/results/failover_32_s3_standardized_5x_20261109_summary.json",
+      "configuration": {
+        "probe_interval_ms": 470,
+        "window_ms": 5000,
+        "fallback_loss_pct": 30,
+        "recovery_success_pct": 80,
+        "bad_windows_required": 2,
+        "good_windows_required": 3,
+        "recovery_probe_offset_ms": 235,
+        "recovery_probe_interval_ms": 940,
+        "recovery_probe_guard_ms": 470,
+        "espnow_stabilization_windows": 3,
+        "wifi_power_save": false
+      },
+      "valid_runs": 5,
+      "successful_fallbacks": 5,
+      "successful_recoveries": 5,
+      "baseline_espnow_success_pct": 100.0,
+      "udp_success_pct": 68.519,
+      "fallback_reaction_ms": [
+        6995,
+        9799,
+        10849,
+        11500,
+        10191
+      ],
+      "fallback_reaction_ms_descriptive": {
+        "minimum": 6995,
+        "average": 9866.8,
+        "median": 10191,
+        "maximum": 11500,
+        "sample_standard_deviation": 1731.257
+      },
+      "recovery_reaction_ms": [
+        16245,
+        18359,
+        13949,
+        18392,
+        16445
+      ],
+      "recovery_reaction_ms_descriptive": {
+        "minimum": 13949,
+        "average": 16678,
+        "median": 16445,
+        "maximum": 18392,
+        "sample_standard_deviation": 1833.901
+      },
+      "time_in_udp_ms": [
+        20019,
+        19983,
+        15021,
+        25016,
+        20005
+      ],
+      "time_in_udp_ms_descriptive": {
+        "minimum": 15021,
+        "average": 20008.8,
+        "median": 20005,
+        "maximum": 25016,
+        "sample_standard_deviation": 3533.801
+      },
+      "runs": [
+        "experiments/results/failover_32_s3_standardized_repeat_01_20261109.json",
+        "experiments/results/failover_32_s3_standardized_repeat_02_20261109.json",
+        "experiments/results/failover_32_s3_standardized_repeat_03_20261109.json",
+        "experiments/results/failover_32_s3_standardized_repeat_04_20261109.json",
+        "experiments/results/failover_32_s3_standardized_repeat_05_20261109.json"
+      ],
+      "protocol_note": "protocol compliant with 1 s host/device timestamp tolerance"
+    }
+  ],
+  "supported_claims": [
+    "automatic ESP-NOW to UDP fallback completed in all 15 controlled cycles",
+    "automatic UDP to ESP-NOW recovery completed in all 15 controlled cycles",
+    "the same firmware state machine and thresholds operated on all three hardware pairs"
+  ],
+  "unsupported_claims": [
+    "simultaneous failover of three active senders",
+    "guaranteed UDP packet delivery",
+    "hardware-platform superiority",
+    "physical-link or power-failure tolerance"
+  ],
+  "key_observation": "ESP32/ESP32-S3 reserve UDP application-ACK delivery was 74/108 (68.519 percent), while the pair still recovered automatically and delivered 79/80 ACK in the final ESP-NOW recovery windows.",
+  "figure": "experiments/figures/failover_all_pairs_20261109.svg"
+}

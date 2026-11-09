@@ -1,0 +1,129 @@
+{
+  "schema": "wlf.experiment-summary.v1",
+  "test_id": "failover_8266_s3_100cm_20261106",
+  "date": "2026-11-06",
+  "nodes": [
+    "node8266",
+    "node32s3"
+  ],
+  "access_point": {
+    "ssid": "Lab-2G",
+    "band_ghz": 2.4,
+    "channel": 6,
+    "node8266_rssi_dbm": -70,
+    "node32s3_rssi_dbm": -63
+  },
+  "distance_cm": 100,
+  "failover_configuration": {
+    "probe_interval_ms": 500,
+    "window_ms": 5000,
+    "fallback_loss_pct": 30,
+    "recovery_success_pct": 90,
+    "bad_windows_required": 2,
+    "good_windows_required": 3
+  },
+  "completed_udp_run": {
+    "sender": "node32s3",
+    "receiver": "node8266",
+    "requested": 1000,
+    "accepted": 1000,
+    "local_send_rejections": 0,
+    "matched_ack_received": 979,
+    "ack_lost": 21,
+    "application_ack_success_pct": 97.9,
+    "send_duration_ms": 19990,
+    "rtt_min_ms": 4,
+    "rtt_avg_ms": 10,
+    "rtt_max_ms": 104
+  },
+  "automatic_scenario": {
+    "node": "node32s3",
+    "failover_enabled_at": "2026-11-06T22:38:32.746+03:00",
+    "fallback_at": "2026-11-06T22:38:42.681+03:00",
+    "fallback_from": "esp-now",
+    "fallback_to": "udp",
+    "fallback_reason": "espnow_ack_loss_threshold",
+    "fallback_reaction_ms_from_enable": 9935,
+    "degradation_windows": [
+      {
+        "espnow_probes": 10,
+        "espnow_acks": 1,
+        "espnow_success_pct": 10
+      },
+      {
+        "espnow_probes": 10,
+        "espnow_acks": 0,
+        "espnow_success_pct": 0
+      }
+    ],
+    "combined_degradation_success_pct": 5.0,
+    "udp_during_fallback": {
+      "probes": 50,
+      "acks": 46,
+      "success_pct": 92.0
+    },
+    "recovery_at": "2026-11-06T22:39:07.667+03:00",
+    "recovery_from": "udp",
+    "recovery_to": "esp-now",
+    "recovery_reason": "espnow_recovery_threshold",
+    "time_in_udp_ms": 24986,
+    "final_recovery_windows": 3,
+    "final_recovery_espnow_probes": 15,
+    "final_recovery_espnow_acks": 15,
+    "final_recovery_success_pct": 100.0,
+    "switch_count": 2
+  },
+  "controlled_scenario": {
+    "node": "node8266",
+    "fallback_at": "2026-11-06T22:45:05.801+03:00",
+    "fallback_from": "esp-now",
+    "fallback_to": "udp",
+    "fallback_reason": "manual_force",
+    "automatic": false,
+    "udp_observed_probes": 64,
+    "udp_observed_acks": 62,
+    "udp_observed_success_pct": 96.875,
+    "recovery_at": "2026-11-06T22:45:41.287+03:00",
+    "recovery_from": "udp",
+    "recovery_to": "esp-now",
+    "recovery_reason": "espnow_recovery_threshold",
+    "total_forced_udp_duration_ms": 35486,
+    "final_recovery_windows": 3,
+    "final_recovery_espnow_probes": 15,
+    "final_recovery_espnow_acks": 15,
+    "final_recovery_success_pct": 100.0,
+    "switch_count": 2
+  },
+  "final_state": {
+    "node8266": {
+      "enabled": true,
+      "automatic": true,
+      "active_transport": "esp-now",
+      "switch_count": 2
+    },
+    "node32s3": {
+      "enabled": true,
+      "automatic": true,
+      "active_transport": "esp-now",
+      "switch_count": 2
+    }
+  },
+  "incomplete_runs": [
+    {
+      "sender": "node8266",
+      "receiver": "node32s3",
+      "requested": 1000,
+      "last_reported_accepted": 900,
+      "reason": "No udp_test_complete event is present; excluded from quantitative conclusions."
+    }
+  ],
+  "interpretation": "The state machine automatically detected two consecutive degraded ESP-NOW windows on node32s3, switched to UDP, maintained application-level delivery during fallback, and returned to ESP-NOW after three consecutive recovery windows. This is one exploratory run and must be repeated before statistical conclusions.",
+  "limitations": [
+    "Single automatic transition and single controlled transition.",
+    "The external cause of the ESP-NOW degradation is not encoded in telemetry.",
+    "Host timestamps include serial and GUI scheduling latency.",
+    "One UDP direction did not emit a completion event and was excluded."
+  ],
+  "raw_log": "experiments/raw/serial_20261106_222252.jsonl",
+  "raw_log_sha256": "71745fc9c686dae6807c94960692e1d1f2d554cb4b775b2e59cff3a53426df44"
+}

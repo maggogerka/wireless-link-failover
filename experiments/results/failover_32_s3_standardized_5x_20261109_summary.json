@@ -1,0 +1,182 @@
+{
+  "schema": "wlf.standardized-experiment-summary.v1",
+  "test_id": "failover_32_s3_standardized_5x_20261109",
+  "date": "2026-11-09",
+  "classification": "protocol_compliant_standardized_series",
+  "complete_transition_cycles": 5,
+  "protocol_compliant_cycles": 5,
+  "distance_cm": 100,
+  "access_point": {
+    "ssid": "Lab-2G",
+    "band_ghz": 2.4,
+    "channel": 6
+  },
+  "wifi_status_before_series": {
+    "node32": {
+      "host_time": "2026-11-09T03:22:56.175+03:00",
+      "serial_port": "COM3",
+      "schema": "wlf.telemetry.v1",
+      "type": "wifi_status",
+      "node_id": "node32",
+      "ssid": "Lab-2G",
+      "state": "connected",
+      "connected": true,
+      "wifi_power_save": false,
+      "channel": 6,
+      "rssi_dbm": -67,
+      "local_ip": "192.168.3.149",
+      "gateway_ip": "192.168.3.1",
+      "subnet_mask": "255.255.255.0"
+    },
+    "node32s3": {
+      "host_time": "2026-11-09T03:22:56.185+03:00",
+      "serial_port": "COM7",
+      "schema": "wlf.telemetry.v1",
+      "type": "wifi_status",
+      "node_id": "node32s3",
+      "ssid": "Lab-2G",
+      "state": "connected",
+      "connected": true,
+      "wifi_power_save": false,
+      "channel": 6,
+      "rssi_dbm": -62,
+      "local_ip": "192.168.3.145",
+      "gateway_ip": "192.168.3.1",
+      "subnet_mask": "255.255.255.0"
+    }
+  },
+  "configuration": {
+    "probe_interval_ms": 470,
+    "window_ms": 5000,
+    "fallback_loss_pct": 30,
+    "recovery_success_pct": 80,
+    "bad_windows_required": 2,
+    "good_windows_required": 3,
+    "recovery_probe_offset_ms": 235,
+    "recovery_probe_interval_ms": 940,
+    "recovery_probe_guard_ms": 470,
+    "espnow_stabilization_windows": 3,
+    "wifi_power_save": false
+  },
+  "protocol_adherence": {
+    "minimum_preparation_wait_ms": 30000,
+    "host_timestamp_tolerance_ms": 1000,
+    "preparation_to_fault_ms": [
+      32860,
+      30000,
+      48943,
+      33352,
+      29691
+    ],
+    "complete_pre_fault_windows": [
+      6,
+      6,
+      9,
+      6,
+      5
+    ],
+    "all_cycles_compliant": true,
+    "tolerance_rationale": "The GUI timer starts after sending FAILOVER ON, while failover_enabled is logged after serial processing. Up to 1 second is allowed for this host/device timestamp skew; every cycle also completed at least five full pre-fault windows."
+  },
+  "overall": {
+    "successful_fallbacks": 5,
+    "successful_recoveries": 5,
+    "baseline_espnow_probes": 342,
+    "baseline_espnow_acks": 342,
+    "baseline_espnow_success_pct": 100.0,
+    "fallback_reaction_ms": {
+      "minimum": 6995,
+      "average": 9866.8,
+      "median": 10191,
+      "maximum": 11500,
+      "sample_standard_deviation": 1731.257
+    },
+    "recovery_reaction_ms": {
+      "minimum": 13949,
+      "average": 16678,
+      "median": 16445,
+      "maximum": 18392,
+      "sample_standard_deviation": 1833.901
+    },
+    "udp_reserve": {
+      "observed_probes": 108,
+      "observed_acks": 74,
+      "success_pct": 68.519
+    },
+    "final_recovery_windows": {
+      "espnow_probes": 80,
+      "espnow_acks": 79,
+      "success_pct": 98.75
+    },
+    "time_in_udp_ms": {
+      "minimum": 15021,
+      "average": 20008.8,
+      "median": 20005,
+      "maximum": 25016,
+      "sample_standard_deviation": 3533.801
+    }
+  },
+  "directions": [
+    {
+      "sender": "node32",
+      "receiver": "node32s3",
+      "runs": 3,
+      "baseline_espnow_probes": 182,
+      "baseline_espnow_acks": 182,
+      "baseline_espnow_success_pct": 100.0,
+      "fallback_reaction_ms": {
+        "minimum": 6995,
+        "average": 9562,
+        "median": 10191,
+        "maximum": 11500,
+        "sample_standard_deviation": 2317.431
+      },
+      "recovery_reaction_ms": {
+        "minimum": 16245,
+        "average": 17027.333,
+        "median": 16445,
+        "maximum": 18392,
+        "sample_standard_deviation": 1186.059
+      },
+      "udp_probes": 71,
+      "udp_acks": 45,
+      "udp_success_pct": 63.38
+    },
+    {
+      "sender": "node32s3",
+      "receiver": "node32",
+      "runs": 2,
+      "baseline_espnow_probes": 160,
+      "baseline_espnow_acks": 160,
+      "baseline_espnow_success_pct": 100.0,
+      "fallback_reaction_ms": {
+        "minimum": 9799,
+        "average": 10324,
+        "median": 10324.0,
+        "maximum": 10849,
+        "sample_standard_deviation": 742.462
+      },
+      "recovery_reaction_ms": {
+        "minimum": 13949,
+        "average": 16154,
+        "median": 16154.0,
+        "maximum": 18359,
+        "sample_standard_deviation": 3118.341
+      },
+      "udp_probes": 37,
+      "udp_acks": 29,
+      "udp_success_pct": 78.378
+    }
+  ],
+  "runs": [
+    "experiments/results/failover_32_s3_standardized_repeat_01_20261109.json",
+    "experiments/results/failover_32_s3_standardized_repeat_02_20261109.json",
+    "experiments/results/failover_32_s3_standardized_repeat_03_20261109.json",
+    "experiments/results/failover_32_s3_standardized_repeat_04_20261109.json",
+    "experiments/results/failover_32_s3_standardized_repeat_05_20261109.json"
+  ],
+  "raw_log": "experiments/raw/serial_20261109_032220_32_s3_snapshot.jsonl",
+  "raw_log_sha256": "ca4ec6ad2b9ad72898658359a07fcec3b2fd3730a1cc9c06f6aef8b2e24eb2cb",
+  "integrity_status": "snapshot_complete",
+  "interpretation": "All five controlled faults followed the 30-second preparation guard, caused automatic fallback to UDP, and returned automatically to ESP-NOW. Both nodes used the same 470/5000/30/80 configuration with Wi-Fi power saving disabled."
+}

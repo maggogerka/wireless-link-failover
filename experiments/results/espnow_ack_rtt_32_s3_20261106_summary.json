@@ -1,0 +1,46 @@
+{
+  "schema": "wlf.experiment-summary.v1",
+  "test_id": "espnow_ack_rtt_control_32_s3_20261106_161514",
+  "captured_at": "2026-11-06T13:15:15Z",
+  "duration_seconds": 8.5,
+  "channel": 1,
+  "packet_version": 1,
+  "packet_size_bytes": 20,
+  "nodes": {
+    "node32": {
+      "serial_port": "COM3",
+      "station_mac": "00:70:07:A2:CB:24"
+    },
+    "node32s3": {
+      "serial_port": "COM7",
+      "station_mac": "94:A9:90:D2:E6:94"
+    }
+  },
+  "round_trips": {
+    "node32_to_node32s3_to_node32": {
+      "probe_received_by_peer": 4,
+      "matched_ack_received": 4,
+      "rtt_min_ms": 25,
+      "rtt_avg_ms": 25.0,
+      "rtt_max_ms": 25
+    },
+    "node32s3_to_node32_to_node32s3": {
+      "probe_received_by_peer": 4,
+      "matched_ack_received": 4,
+      "rtt_min_ms": 15,
+      "rtt_avg_ms": 16.5,
+      "rtt_max_ms": 18
+    }
+  },
+  "radio_packets_received": 16,
+  "radio_packets_valid_crc": 16,
+  "matched_ack_total": 8,
+  "unmatched_ack_total": 0,
+  "invalid_serial_lines": 1,
+  "result": "application_ack_and_rtt_confirmed",
+  "notes": [
+    "the invalid serial line was a partial UART line at COM3 open time",
+    "this short bench run is a functional check, not a statistical latency estimate"
+  ],
+  "raw_log": "experiments/raw/espnow_ack_rtt_control_32_s3_20261106_161514.jsonl"
+}

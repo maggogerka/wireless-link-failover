@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980" role="img" aria-labelledby="title desc">
+  <title id="title">Автомат выбора транспорта</title>
+  <desc id="desc">Решение принимается по прикладным ACK. Гистерезис 2/3 окна исключает дребезг около порога.</desc>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <defs>
+    <marker id="arrow-primary" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L12,6 L0,12 z" fill="#1f5a94"/></marker>
+    <marker id="arrow-reserve" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L12,6 L0,12 z" fill="#a34b12"/></marker>
+    <marker id="arrow-gray" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L12,6 L0,12 z" fill="#5b5b5b"/></marker>
+  </defs>
+  <text x="80" y="70" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" text-anchor="start" fill="#111111" >Автомат выбора транспорта</text>
+<circle cx="155" cy="215" r="12" fill="#111111"/>
+<text x="155" y="180" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="middle" fill="#5b5b5b" >Запуск</text>
+<line x1="170" y1="215" x2="300" y2="215" stroke="#5b5b5b" stroke-width="4" marker-end="url(#arrow-gray)"/>
+<rect x="315" y="140" width="420" height="150" fill="#f6f6f6" stroke="#111111" stroke-width="3"/>
+<text x="525" y="198" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" text-anchor="middle" fill="#111111" >СТАБИЛИЗАЦИЯ</text>
+<text x="525" y="242" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle" fill="#5b5b5b" >3 окна без переключения</text>
+<line x1="735" y1="215" x2="880" y2="215" stroke="#1f5a94" stroke-width="5" marker-end="url(#arrow-primary)"/>
+<rect x="895" y="125" width="500" height="180" fill="#fff" stroke="#1f5a94" stroke-width="5"/>
+<text x="1145" y="185" font-family="Arial, Helvetica, sans-serif" font-size="35" font-weight="700" text-anchor="middle" fill="#1f5a94" >ESP-NOW</text>
+<text x="1145" y="230" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="400" text-anchor="middle" fill="#111111" >основной транспорт</text>
+<text x="1145" y="270" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle" fill="#5b5b5b" >probe каждые 470 мс</text>
+<rect x="895" y="575" width="500" height="180" fill="#fff" stroke="#a34b12" stroke-width="5"/>
+<text x="1145" y="635" font-family="Arial, Helvetica, sans-serif" font-size="35" font-weight="700" text-anchor="middle" fill="#a34b12" >UDP</text>
+<text x="1145" y="680" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="400" text-anchor="middle" fill="#111111" >резерв через точку доступа</text>
+<text x="1145" y="720" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle" fill="#5b5b5b" >ESP-NOW probe каждые 940 мс</text>
+<path d="M1395 215 C1515 215 1515 665 1395 665" fill="none" stroke="#8e2e2e" stroke-width="5" marker-end="url(#arrow-reserve)"/>
+<text x="1415" y="430" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="middle" fill="#8e2e2e"><tspan x="1415" dy="0">потери ≥ 30 %</tspan><tspan x="1415" dy="31">2 окна подряд по 5 с</tspan></text>
+<path d="M895 665 C775 665 775 215 895 215" fill="none" stroke="#2f6b3b" stroke-width="5" marker-end="url(#arrow-primary)"/>
+<text x="760" y="410" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="middle" fill="#2f6b3b"><tspan x="760" dy="0">ACK ≥ 80 %</tspan><tspan x="760" dy="34">3 окна подряд по 5 с</tspan></text>
+<line x1="140" y1="850" x2="1460" y2="850" stroke="#e6e6e6" stroke-width="2"/>
+<text x="800" y="910" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle" fill="#111111" >Решение принимается по прикладным ACK. Гистерезис 2/3 окна исключает дребезг около порога.</text>
+</svg>

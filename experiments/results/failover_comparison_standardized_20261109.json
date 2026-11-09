@@ -1,0 +1,189 @@
+{
+  "schema": "wlf.failover-comparison.v1",
+  "comparison_id": "failover_esp32_vs_esp32s3_standardized_20261109",
+  "date": "2026-11-09",
+  "classification": "standardized_settings_with_documented_preparation_timing_deviation",
+  "common_conditions": {
+    "complete_transition_cycles_per_series": 5,
+    "distance_cm": 100,
+    "ssid": "Lab-2G",
+    "band_ghz": 2.4,
+    "channel": 6,
+    "probe_interval_ms": 470,
+    "window_ms": 5000,
+    "fallback_loss_pct": 30,
+    "recovery_success_pct": 80,
+    "bad_windows_required": 2,
+    "good_windows_required": 3,
+    "recovery_probe_interval_ms": 940,
+    "recovery_probe_guard_ms": 470,
+    "espnow_stabilization_windows": 3,
+    "wifi_power_save": false,
+    "fault_type": "controlled_espnow_application_ack_suppression"
+  },
+  "configuration_differences": [],
+  "series": [
+    {
+      "key": "esp32",
+      "label": "ESP8266↔ESP32",
+      "short_label": "ESP32",
+      "color": "#2563EB",
+      "source_summary": "experiments/results/failover_8266_32_controlled_5x_20261108_summary.json",
+      "configuration": {
+        "probe_interval_ms": 470,
+        "window_ms": 5000,
+        "fallback_loss_pct": 30,
+        "recovery_success_pct": 80,
+        "bad_windows_required": 2,
+        "good_windows_required": 3,
+        "recovery_probe_offset_ms": 235,
+        "recovery_probe_interval_ms": 940,
+        "recovery_probe_guard_ms": 470,
+        "espnow_stabilization_windows": 3,
+        "wifi_power_save": false
+      },
+      "valid_runs": 5,
+      "successful_fallbacks": 5,
+      "successful_recoveries": 5,
+      "baseline_espnow_success_pct": 100.0,
+      "udp_success_pct": 90.226,
+      "fallback_reaction_ms": [
+        6738,
+        8295,
+        8077,
+        8657,
+        6678
+      ],
+      "fallback_reaction_ms_descriptive": {
+        "minimum": 6678,
+        "average": 7689,
+        "median": 8077,
+        "maximum": 8657,
+        "sample_standard_deviation": 919.419
+      },
+      "recovery_reaction_ms": [
+        14304,
+        14165,
+        14472,
+        18278,
+        14851
+      ],
+      "recovery_reaction_ms_descriptive": {
+        "minimum": 14165,
+        "average": 15214,
+        "median": 14472,
+        "maximum": 18278,
+        "sample_standard_deviation": 1731.974
+      },
+      "time_in_udp_ms": [
+        30033,
+        19998,
+        20003,
+        25015,
+        30017
+      ],
+      "time_in_udp_ms_descriptive": {
+        "minimum": 19998,
+        "average": 25013.2,
+        "median": 25015,
+        "maximum": 30033,
+        "sample_standard_deviation": 5012.254
+      },
+      "runs": [
+        "experiments/results/failover_8266_32_repeat_01_20261108.json",
+        "experiments/results/failover_8266_32_repeat_02_20261108.json",
+        "experiments/results/failover_8266_32_repeat_03_20261108.json",
+        "experiments/results/failover_8266_32_repeat_04_20261108.json",
+        "experiments/results/failover_8266_32_repeat_05_20261108.json"
+      ]
+    },
+    {
+      "key": "esp32_s3",
+      "label": "ESP8266↔ESP32-S3",
+      "short_label": "ESP32-S3",
+      "color": "#EA580C",
+      "source_summary": "experiments/results/failover_8266_s3_standardized_5x_20261109_summary.json",
+      "configuration": {
+        "probe_interval_ms": 470,
+        "window_ms": 5000,
+        "fallback_loss_pct": 30,
+        "recovery_success_pct": 80,
+        "bad_windows_required": 2,
+        "good_windows_required": 3,
+        "recovery_probe_offset_ms": 235,
+        "recovery_probe_interval_ms": 940,
+        "recovery_probe_guard_ms": 470,
+        "espnow_stabilization_windows": 3,
+        "wifi_power_save": false
+      },
+      "valid_runs": 5,
+      "successful_fallbacks": 5,
+      "successful_recoveries": 5,
+      "baseline_espnow_success_pct": 100.0,
+      "udp_success_pct": 96.992,
+      "fallback_reaction_ms": [
+        7430,
+        6802,
+        8585,
+        8405,
+        10200
+      ],
+      "fallback_reaction_ms_descriptive": {
+        "minimum": 6802,
+        "average": 8284.4,
+        "median": 8405,
+        "maximum": 10200,
+        "sample_standard_deviation": 1294.405
+      },
+      "recovery_reaction_ms": [
+        13848,
+        16204,
+        14157,
+        14488,
+        17448
+      ],
+      "recovery_reaction_ms_descriptive": {
+        "minimum": 13848,
+        "average": 15229,
+        "median": 14488,
+        "maximum": 17448,
+        "sample_standard_deviation": 1539.481
+      },
+      "time_in_udp_ms": [
+        19969,
+        40036,
+        19999,
+        19975,
+        25001
+      ],
+      "time_in_udp_ms_descriptive": {
+        "minimum": 19969,
+        "average": 24996,
+        "median": 19999,
+        "maximum": 40036,
+        "sample_standard_deviation": 8684.077
+      },
+      "runs": [
+        "experiments/results/failover_8266_s3_standardized_repeat_01_20261109.json",
+        "experiments/results/failover_8266_s3_standardized_repeat_02_20261109.json",
+        "experiments/results/failover_8266_s3_standardized_repeat_03_20261109.json",
+        "experiments/results/failover_8266_s3_standardized_repeat_04_20261109.json",
+        "experiments/results/failover_8266_s3_standardized_repeat_05_20261109.json"
+      ]
+    }
+  ],
+  "observed_differences": {
+    "fallback_average_ms_esp32s3_minus_esp32": 595.4,
+    "recovery_average_ms_esp32s3_minus_esp32": 15,
+    "baseline_success_percentage_points_esp32s3_minus_esp32": 0.0,
+    "udp_success_percentage_points_esp32s3_minus_esp32": 6.766
+  },
+  "protocol_deviation": {
+    "affected_series": "esp32_s3",
+    "description": "The S3 controlled fault began 16.284-26.429 seconds after preparation rather than after the planned 30 seconds. All three stabilization windows completed with 100 percent ACK before every fault.",
+    "analysis_scope": "Fallback and post-fault recovery timing remain comparable under identical state-machine settings; baseline exposure duration must not be compared as if it were identical."
+  },
+  "conclusion": "Both pairs completed fallback and recovery in all five cycles. With identical settings and Wi-Fi power saving disabled, average recovery differed by only 15 ms: 15.214 s for ESP32 and 15.229 s for ESP32-S3. The earlier long S3 recovery tail was therefore not reproduced under the standardized algorithm configuration.",
+  "scope_limitation": "Five cycles per pair and an unbalanced 3/2 direction split are sufficient for an engineering demonstration but not for a directional hardware-effect claim.",
+  "figure": "experiments/figures/failover_comparison_standardized_20261109.svg"
+}

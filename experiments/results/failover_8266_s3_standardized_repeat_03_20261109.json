@@ -1,0 +1,115 @@
+{
+  "schema": "wlf.standardized-experiment-run.v1",
+  "test_id": "failover_8266_s3_standardized_repeat_03_20261109",
+  "date": "2026-11-09",
+  "repeat": 3,
+  "transition_cycle_valid": true,
+  "protocol_compliant": false,
+  "classification": "standardized_settings_with_preparation_timing_deviation",
+  "sender": "node8266",
+  "fault_receiver": "node32s3",
+  "distance_cm": 100,
+  "configuration": {
+    "probe_interval_ms": 470,
+    "window_ms": 5000,
+    "fallback_loss_pct": 30,
+    "recovery_success_pct": 80,
+    "bad_windows_required": 2,
+    "good_windows_required": 3,
+    "recovery_probe_offset_ms": 235,
+    "recovery_probe_interval_ms": 940,
+    "recovery_probe_guard_ms": 470,
+    "espnow_stabilization_windows": 3,
+    "wifi_power_save": false
+  },
+  "protocol_adherence": {
+    "preparation_to_fault_ms": 16284,
+    "required_preparation_wait_ms": 30000,
+    "host_timestamp_tolerance_ms": 0,
+    "complete_pre_fault_windows": 3,
+    "required_pre_fault_windows": 5,
+    "checks": {
+      "preparation_wait_at_least_30000_ms_with_timestamp_tolerance": false,
+      "at_least_5_complete_pre_fault_windows": false,
+      "three_stabilization_windows_completed": true,
+      "stabilization_windows_all_100_pct": true
+    }
+  },
+  "baseline": {
+    "complete_windows": 3,
+    "espnow_probes": 32,
+    "espnow_acks": 32,
+    "success_pct": 100.0,
+    "window_success_pct": [
+      100,
+      100,
+      100
+    ]
+  },
+  "controlled_fault": {
+    "type": "espnow_ack_suppression",
+    "enabled_at": "2026-11-09T02:40:11.014+03:00",
+    "disabled_at": "2026-11-09T02:40:25.441+03:00",
+    "duration_ms": 14427
+  },
+  "fallback": {
+    "transition_at": "2026-11-09T02:40:19.599+03:00",
+    "from": "esp-now",
+    "to": "udp",
+    "reason": "espnow_ack_loss_threshold",
+    "automatic": true,
+    "reaction_from_fault_ms": 8585,
+    "degradation_windows": [
+      {
+        "espnow_probes": 11,
+        "espnow_acks": 3,
+        "espnow_success_pct": 27
+      },
+      {
+        "espnow_probes": 11,
+        "espnow_acks": 0,
+        "espnow_success_pct": 0
+      }
+    ],
+    "combined_espnow_success_pct": 13.636
+  },
+  "udp_reserve": {
+    "time_in_udp_ms": 19999,
+    "observed_probes": 21,
+    "observed_acks": 20,
+    "success_pct": 95.238
+  },
+  "recovery": {
+    "transition_at": "2026-11-09T02:40:39.598+03:00",
+    "from": "udp",
+    "to": "esp-now",
+    "reason": "espnow_recovery_threshold",
+    "automatic": true,
+    "reaction_from_fault_removal_ms": 14157,
+    "all_window_success_pct": [
+      83,
+      100,
+      100
+    ],
+    "final_consecutive_good_windows": 3,
+    "final_good_window_probes": 16,
+    "final_good_window_acks": 15,
+    "final_good_window_success_pct": 93.75,
+    "final_good_window_success_pct_sequence": [
+      83,
+      100,
+      100
+    ]
+  },
+  "final_state": {
+    "active_transport": "esp-now",
+    "automatic": true,
+    "switch_count": 2
+  },
+  "raw_log": "experiments/raw/serial_20261109_005533_standardized_s3_snapshot.jsonl",
+  "raw_line_range": [
+    39719,
+    39741
+  ],
+  "interpretation": "The automatic fallback and recovery cycle completed under the standardized radio and recovery settings. The controlled fault was injected after all three stabilization windows, but before the planned 30-second preparation interval had elapsed."
+}

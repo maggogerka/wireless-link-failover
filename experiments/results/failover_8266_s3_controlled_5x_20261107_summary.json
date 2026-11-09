@@ -1,0 +1,103 @@
+{
+  "schema": "wlf.experiment-summary.v1",
+  "test_id": "failover_8266_s3_controlled_5x_20261107",
+  "date": "2026-11-07",
+  "valid_runs": 5,
+  "excluded_diagnostic_attempts": 4,
+  "distance_cm": 100,
+  "access_point": {
+    "ssid": "Lab-2G",
+    "band_ghz": 2.4,
+    "channel": 6
+  },
+  "configuration": {
+    "probe_interval_ms": 500,
+    "window_ms": 5000,
+    "fallback_loss_pct": 30,
+    "recovery_success_pct": 90,
+    "bad_windows_required": 2,
+    "good_windows_required": 3,
+    "recovery_probe_offset_ms": 250
+  },
+  "overall": {
+    "successful_fallbacks": 5,
+    "successful_recoveries": 5,
+    "baseline_espnow_probes": 261,
+    "baseline_espnow_acks": 260,
+    "baseline_espnow_success_pct": 99.617,
+    "fallback_reaction_ms": {
+      "minimum": 6656,
+      "average": 8749.8,
+      "median": 8686,
+      "maximum": 10179
+    },
+    "recovery_reaction_ms": {
+      "minimum": 15039,
+      "average": 30533.8,
+      "median": 15311,
+      "maximum": 55348
+    },
+    "udp_reserve": {
+      "observed_probes": 430,
+      "observed_acks": 396,
+      "success_pct": 92.093
+    },
+    "time_in_udp_ms": {
+      "minimum": 24989,
+      "average": 43008.6,
+      "maximum": 80005
+    }
+  },
+  "directions": [
+    {
+      "sender": "node32s3",
+      "receiver": "node8266",
+      "runs": 3,
+      "baseline_espnow_probes": 151,
+      "baseline_espnow_acks": 150,
+      "baseline_espnow_success_pct": 99.338,
+      "fallback_reaction_ms_average": 8294.667,
+      "fallback_reaction_ms_median": 8464,
+      "recovery_reaction_ms_average": 40773.0,
+      "recovery_reaction_ms_median": 51664,
+      "udp_probes": 330,
+      "udp_acks": 300,
+      "udp_success_pct": 90.909,
+      "time_in_udp_ms_average": 55019.333
+    },
+    {
+      "sender": "node8266",
+      "receiver": "node32s3",
+      "runs": 2,
+      "baseline_espnow_probes": 110,
+      "baseline_espnow_acks": 110,
+      "baseline_espnow_success_pct": 100.0,
+      "fallback_reaction_ms_average": 9432.5,
+      "fallback_reaction_ms_median": 9432.5,
+      "recovery_reaction_ms_average": 15175.0,
+      "recovery_reaction_ms_median": 15175.0,
+      "udp_probes": 100,
+      "udp_acks": 96,
+      "udp_success_pct": 96.0,
+      "time_in_udp_ms_average": 24992.5
+    }
+  ],
+  "runs": [
+    "experiments/results/failover_8266_s3_repeat_01_20261107.json",
+    "experiments/results/failover_8266_s3_repeat_02_20261107.json",
+    "experiments/results/failover_8266_s3_repeat_03_20261107.json",
+    "experiments/results/failover_8266_s3_repeat_04_20261107.json",
+    "experiments/results/failover_8266_s3_repeat_05_20261107.json"
+  ],
+  "raw_logs": [
+    "experiments/raw/serial_20261107_002514.jsonl",
+    "experiments/raw/serial_20261107_190032.jsonl"
+  ],
+  "raw_log_sha256": {
+    "experiments/raw/serial_20261107_002514.jsonl": "4e9eca991c25a0858936eed7912521305819700a7d5901dbc4829295f1cac618",
+    "experiments/raw/serial_20261107_190032.jsonl": "438089a4b8b28674cb3ada1a0d267df1e1b39c1f0dedc01777c1700ab73901ec"
+  },
+  "interpretation": "All five controlled faults caused automatic fallback and all five runs returned automatically to ESP-NOW. Detection time stayed within 6.656-10.179 seconds as expected from two 5-second windows and the phase of fault injection. UDP application-ACK success was 92.093% overall.",
+  "direction_observation": "The ESP8266-to-ESP32-S3 direction recovered consistently in about 15 seconds. In the ESP32-S3-to-ESP8266 direction, two of three runs required about 52-55 seconds because intermediate recovery windows remained below 90%; more repetitions are needed before claiming a directional effect.",
+  "scope_limitation": "The experiment validates the decision algorithm using controlled application-ACK suppression. It does not by itself characterize physical attenuation, interference range, or complete node failure."
+}

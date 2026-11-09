@@ -1,0 +1,180 @@
+{
+  "schema": "wlf.standardized-experiment-summary.v1",
+  "test_id": "failover_8266_s3_standardized_5x_20261109",
+  "date": "2026-11-09",
+  "classification": "complete_transition_series_with_preparation_timing_deviation",
+  "complete_transition_cycles": 5,
+  "protocol_compliant_cycles": 0,
+  "distance_cm": 100,
+  "access_point": {
+    "ssid": "Lab-2G",
+    "band_ghz": 2.4,
+    "channel": 6
+  },
+  "wifi_status_before_series": {
+    "node8266": {
+      "host_time": "2026-11-09T00:56:00.402+03:00",
+      "serial_port": "COM6",
+      "schema": "wlf.telemetry.v1",
+      "type": "wifi_status",
+      "node_id": "node8266",
+      "ssid": "Lab-2G",
+      "state": "connected",
+      "connected": true,
+      "wifi_power_save": false,
+      "channel": 6,
+      "rssi_dbm": -71,
+      "local_ip": "192.168.3.146",
+      "gateway_ip": "192.168.3.1",
+      "subnet_mask": "255.255.255.0"
+    },
+    "node32s3": {
+      "host_time": "2026-11-09T00:56:00.335+03:00",
+      "serial_port": "COM7",
+      "schema": "wlf.telemetry.v1",
+      "type": "wifi_status",
+      "node_id": "node32s3",
+      "ssid": "Lab-2G",
+      "state": "connected",
+      "connected": true,
+      "wifi_power_save": false,
+      "channel": 6,
+      "rssi_dbm": -62,
+      "local_ip": "192.168.3.145",
+      "gateway_ip": "192.168.3.1",
+      "subnet_mask": "255.255.255.0"
+    }
+  },
+  "configuration": {
+    "probe_interval_ms": 470,
+    "window_ms": 5000,
+    "fallback_loss_pct": 30,
+    "recovery_success_pct": 80,
+    "bad_windows_required": 2,
+    "good_windows_required": 3,
+    "recovery_probe_offset_ms": 235,
+    "recovery_probe_interval_ms": 940,
+    "recovery_probe_guard_ms": 470,
+    "espnow_stabilization_windows": 3,
+    "wifi_power_save": false
+  },
+  "protocol_deviation": {
+    "description": "ACK suppression was enabled 16.284-26.429 seconds after preparation instead of waiting the planned 30 seconds. All three stabilization windows completed with 100 percent ACK before every controlled fault, but zero to two additional baseline windows were available.",
+    "preparation_to_fault_ms": [
+      22408,
+      18042,
+      16284,
+      26429,
+      19634
+    ],
+    "complete_pre_fault_windows": [
+      4,
+      3,
+      3,
+      5,
+      3
+    ],
+    "impact": "The cycles remain suitable for algorithm transition and recovery timing analysis, but baseline stability totals and strict preregistered-protocol claims must be reported with this deviation."
+  },
+  "overall": {
+    "successful_fallbacks": 5,
+    "successful_recoveries": 5,
+    "baseline_espnow_probes": 193,
+    "baseline_espnow_acks": 193,
+    "baseline_espnow_success_pct": 100.0,
+    "fallback_reaction_ms": {
+      "minimum": 6802,
+      "average": 8284.4,
+      "median": 8405,
+      "maximum": 10200,
+      "sample_standard_deviation": 1294.405
+    },
+    "recovery_reaction_ms": {
+      "minimum": 13848,
+      "average": 15229,
+      "median": 14488,
+      "maximum": 17448,
+      "sample_standard_deviation": 1539.481
+    },
+    "udp_reserve": {
+      "observed_probes": 133,
+      "observed_acks": 129,
+      "success_pct": 96.992
+    },
+    "final_recovery_windows": {
+      "espnow_probes": 80,
+      "espnow_acks": 76,
+      "success_pct": 95.0
+    },
+    "time_in_udp_ms": {
+      "minimum": 19969,
+      "average": 24996,
+      "median": 19999,
+      "maximum": 40036,
+      "sample_standard_deviation": 8684.077
+    }
+  },
+  "directions": [
+    {
+      "sender": "node32s3",
+      "receiver": "node8266",
+      "runs": 3,
+      "baseline_espnow_probes": 129,
+      "baseline_espnow_acks": 129,
+      "baseline_espnow_success_pct": 100.0,
+      "fallback_reaction_ms": {
+        "minimum": 7430,
+        "average": 8678.333,
+        "median": 8405,
+        "maximum": 10200,
+        "sample_standard_deviation": 1405.083
+      },
+      "recovery_reaction_ms": {
+        "minimum": 13848,
+        "average": 15261.333,
+        "median": 14488,
+        "maximum": 17448,
+        "sample_standard_deviation": 1920.555
+      },
+      "udp_probes": 70,
+      "udp_acks": 70,
+      "udp_success_pct": 100.0
+    },
+    {
+      "sender": "node8266",
+      "receiver": "node32s3",
+      "runs": 2,
+      "baseline_espnow_probes": 64,
+      "baseline_espnow_acks": 64,
+      "baseline_espnow_success_pct": 100.0,
+      "fallback_reaction_ms": {
+        "minimum": 6802,
+        "average": 7693.5,
+        "median": 7693.5,
+        "maximum": 8585,
+        "sample_standard_deviation": 1260.771
+      },
+      "recovery_reaction_ms": {
+        "minimum": 14157,
+        "average": 15180.5,
+        "median": 15180.5,
+        "maximum": 16204,
+        "sample_standard_deviation": 1447.448
+      },
+      "udp_probes": 63,
+      "udp_acks": 59,
+      "udp_success_pct": 93.651
+    }
+  ],
+  "runs": [
+    "experiments/results/failover_8266_s3_standardized_repeat_01_20261109.json",
+    "experiments/results/failover_8266_s3_standardized_repeat_02_20261109.json",
+    "experiments/results/failover_8266_s3_standardized_repeat_03_20261109.json",
+    "experiments/results/failover_8266_s3_standardized_repeat_04_20261109.json",
+    "experiments/results/failover_8266_s3_standardized_repeat_05_20261109.json"
+  ],
+  "raw_log": "experiments/raw/serial_20261109_005533_standardized_s3_snapshot.jsonl",
+  "raw_log_sha256": "24ab12a7bd413b7b1015327145b291209f3a132e6705f2c2056af23c71027854",
+  "integrity_status": "snapshot_complete",
+  "interpretation": "All five controlled faults caused automatic fallback and all five cycles returned automatically to ESP-NOW with the same 470/5000/30/80 settings and disabled Wi-Fi power saving used in the ESP32 series. Preparation was shorter than the documented 30 seconds, so the deviation is retained in every run record and in the aggregate."
+}

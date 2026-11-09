@@ -1,0 +1,50 @@
+{
+  "schema": "wlf.aggregate-summary.v1",
+  "experiment": "ESP8266 and ESP32-S3 bench compatibility",
+  "date": "2026-11-06",
+  "channel": 1,
+  "packet_size_bytes": 20,
+  "interval_ms": 20,
+  "repetitions": 2,
+  "packets_per_direction_per_repetition": 1000,
+  "source_summaries": [
+    "experiments/results/espnow_bidirectional_20261106_171837_summary.json",
+    "experiments/results/espnow_bidirectional_20261106_172000_summary.json"
+  ],
+  "directions": {
+    "node8266_to_node32s3": {
+      "accepted_by_sender": 2000,
+      "probe_received_by_peer": 2000,
+      "matched_ack_received": 1999,
+      "inferred_probe_loss": 0,
+      "inferred_ack_return_loss": 1,
+      "probe_delivery_pct": 100.0,
+      "application_ack_success_pct": 99.95,
+      "rtt_min_ms": 2,
+      "rtt_average_by_run_ms": [4, 4],
+      "rtt_max_ms": 38
+    },
+    "node32s3_to_node8266": {
+      "accepted_by_sender": 2000,
+      "probe_received_by_peer": 1952,
+      "matched_ack_received": 1952,
+      "inferred_probe_loss": 48,
+      "inferred_ack_return_loss": 0,
+      "probe_delivery_pct": 97.6,
+      "application_ack_success_pct": 97.6,
+      "rtt_min_ms": 3,
+      "rtt_average_by_run_ms": [3, 3],
+      "rtt_max_ms": 14
+    }
+  },
+  "queue_drops": 0,
+  "invalid_packets": 0,
+  "duplicates": 0,
+  "out_of_order": 0,
+  "result": "compatible_with_reproducible_directional_loss",
+  "limitations": [
+    "bench placement only",
+    "two repetitions are not sufficient for a final confidence interval",
+    "the source of directional loss requires distance and orientation controls"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "schema": "wlf.experiment-summary.v1",
+  "test_id": "udp_8266_s3_100cm_20261106",
+  "date": "2026-11-06",
+  "transport": "UDP broadcast probe with unicast application ACK",
+  "access_point_band_ghz": 2.4,
+  "access_point_channel": 6,
+  "udp_port": 42100,
+  "distance_cm": 100,
+  "packet_size_bytes": 20,
+  "requested_per_direction": 1000,
+  "interval_ms": 20,
+  "directions": [
+    {
+      "sender": "node8266",
+      "receiver": "node32s3",
+      "accepted_by_sender": 1000,
+      "local_send_rejections": 84,
+      "probe_received_by_peer": 887,
+      "ack_accepted_by_peer": 856,
+      "matched_ack_received": 854,
+      "ack_lost": 146,
+      "application_ack_success_pct": 85.4,
+      "send_duration_ms": 21739,
+      "rtt_min_ms": 4,
+      "rtt_avg_ms": 36,
+      "rtt_max_ms": 734
+    },
+    {
+      "sender": "node32s3",
+      "receiver": "node8266",
+      "accepted_by_sender": 1000,
+      "local_send_rejections": 0,
+      "probe_received_by_peer": 815,
+      "ack_accepted_by_peer": 762,
+      "matched_ack_received": 674,
+      "ack_lost": 326,
+      "application_ack_success_pct": 67.4,
+      "send_duration_ms": 19987,
+      "rtt_min_ms": 4,
+      "rtt_avg_ms": 24,
+      "rtt_max_ms": 287
+    }
+  ],
+  "interpretation": "First exploratory run; direction asymmetry and local send rejections require repeated randomized trials before statistical conclusions.",
+  "raw_log": "experiments/raw/serial_20261106_213228.jsonl"
+}

@@ -1,0 +1,51 @@
+{
+  "schema": "wlf.parameter-study.v1",
+  "experiment": "application ACK turnaround delay at 100 cm",
+  "date": "2026-11-06",
+  "nodes": ["node8266", "node32s3"],
+  "channel": 1,
+  "packet_size_bytes": 20,
+  "interval_ms": 20,
+  "distance_cm": 100,
+  "condition": "parallel antennas; non-metal surface; no obstacle",
+  "parameters": [
+    {
+      "ack_delay_ms": 0,
+      "repetitions": 1,
+      "node8266_to_node32s3": {"probe_received": 996, "ack_received": 996, "rtt_avg_ms": 4},
+      "node32s3_to_node8266": {"probe_received": 998, "ack_received": 990, "rtt_avg_ms": 4},
+      "combined_ack_success_pct": 99.3
+    },
+    {
+      "ack_delay_ms": 2,
+      "repetitions": 2,
+      "node8266_to_node32s3": {"probe_received": 1990, "ack_received": 1984, "rtt_avg_ms_by_run": [6, 6]},
+      "node32s3_to_node8266": {"probe_received": 1998, "ack_received": 1994, "rtt_avg_ms_by_run": [6, 6]},
+      "combined_ack_success_pct": 99.45
+    },
+    {
+      "ack_delay_ms": 5,
+      "repetitions": 1,
+      "node8266_to_node32s3": {"probe_received": 994, "ack_received": 993, "rtt_avg_ms": 9},
+      "node32s3_to_node8266": {"probe_received": 999, "ack_received": 997, "rtt_avg_ms": 9},
+      "combined_ack_success_pct": 99.5
+    },
+    {
+      "ack_delay_ms": 10,
+      "repetitions": 1,
+      "node8266_to_node32s3": {"probe_received": 1000, "ack_received": 999, "rtt_avg_ms": 14},
+      "node32s3_to_node8266": {"probe_received": 996, "ack_received": 993, "rtt_avg_ms": 14},
+      "combined_ack_success_pct": 99.6
+    }
+  ],
+  "ack_schedule_drops": 0,
+  "conclusion": "No monotonic reliability improvement was established; delay increases RTT approximately linearly and remains configurable.",
+  "recommended_follow_up": "Randomize delay order and run at least five repetitions per value before selecting a default.",
+  "source_summaries": [
+    "experiments/results/espnow_bidirectional_20261106_174124_summary.json",
+    "experiments/results/espnow_bidirectional_20261106_174301_summary.json",
+    "experiments/results/espnow_bidirectional_20261106_174436_summary.json",
+    "experiments/results/espnow_bidirectional_20261106_174614_summary.json",
+    "experiments/results/espnow_bidirectional_20261106_174808_summary.json"
+  ]
+}

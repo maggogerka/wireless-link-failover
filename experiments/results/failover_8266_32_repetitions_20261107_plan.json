@@ -1,0 +1,205 @@
+{
+  "schema": "wlf.experiment-plan.v1",
+  "test_id": "failover_8266_32_repetitions_20261107",
+  "status": "completed",
+  "distance_cm": 100,
+  "probe_interval_ms": 470,
+  "window_ms": 5000,
+  "fallback_loss_pct": 30,
+  "recovery_success_pct": 80,
+  "bad_windows_required": 2,
+  "good_windows_required": 3,
+  "recovery_probe_offset_ms": 235,
+  "recovery_probe_interval_ms": 940,
+  "recovery_probe_guard_ms": 470,
+  "fault": "suppress ESP-NOW application ACK on the passive receiver while leaving Wi-Fi and UDP active",
+  "comparison_baseline": "experiments/results/failover_8266_s3_controlled_5x_20261107_summary.json",
+  "runs": [
+    {
+      "repeat": 1,
+      "sender": "node32",
+      "fault_receiver": "node8266",
+      "status": "completed",
+      "result": "experiments/results/failover_8266_32_repeat_01_20261108.json"
+    },
+    {
+      "repeat": 2,
+      "sender": "node8266",
+      "fault_receiver": "node32",
+      "status": "completed",
+      "result": "experiments/results/failover_8266_32_repeat_02_20261108.json"
+    },
+    {
+      "repeat": 3,
+      "sender": "node8266",
+      "fault_receiver": "node32",
+      "status": "completed",
+      "result": "experiments/results/failover_8266_32_repeat_03_20261108.json"
+    },
+    {
+      "repeat": 4,
+      "sender": "node32",
+      "fault_receiver": "node8266",
+      "status": "completed",
+      "result": "experiments/results/failover_8266_32_repeat_04_20261108.json"
+    },
+    {
+      "repeat": 5,
+      "sender": "node32",
+      "fault_receiver": "node8266",
+      "status": "completed",
+      "result": "experiments/results/failover_8266_32_repeat_05_20261108.json"
+    }
+  ],
+  "excluded_diagnostic_attempts": [
+    {
+      "started_at": "2026-11-07T19:27:18+03:00",
+      "sender": "node32",
+      "fault_receiver": "node8266",
+      "status": "excluded",
+      "reason": "sender switched ESP-NOW to UDP at 19:27:28 before the controlled ACK fault at 19:27:47; recovery was not completed before re-preparation"
+    },
+    {
+      "started_at": "2026-11-07T19:29:23+03:00",
+      "sender": "node32",
+      "fault_receiver": "node8266",
+      "status": "excluded",
+      "reason": "sender switched ESP-NOW to UDP at 19:29:33 without a controlled ACK fault; link recovered automatically at 19:34:08"
+    },
+    {
+      "started_at": "2026-11-07T19:40:58+03:00",
+      "sender": "node32",
+      "fault_receiver": "node8266",
+      "status": "excluded",
+      "reason": "pilot with 90 percent recovery threshold: controlled fallback succeeded at 19:41:43, but recovery probes produced 148/200 ACKs (74 percent) and never reached three consecutive 90-percent windows by 19:45:08"
+    },
+    {
+      "started_at": "2026-11-07T19:53:19+03:00",
+      "sender": "node32",
+      "fault_receiver": "node8266",
+      "status": "excluded",
+      "reason": "controlled run with 80 percent recovery threshold was interrupted by an ESP32 watchdog reset at 19:54:56 followed by an invalid-header boot loop; two qualifying recovery windows had already accumulated before the reset"
+    },
+    {
+      "started_at": "2026-11-08T16:59:15+03:00",
+      "sender": "node32",
+      "fault_receiver": "node8266",
+      "status": "excluded",
+      "reason": "automatic fallback occurred at 16:59:25 before the controlled fault; after the real fault, recovery occurred at 17:00:55, relapsed at 17:01:05, and recovered stably at 17:01:20, showing that startup and post-recovery stabilization are required"
+    },
+    {
+      "started_at": "2026-11-08T17:20:58+03:00",
+      "sender": "node32",
+      "fault_receiver": "node8266",
+      "status": "excluded",
+      "reason": "500 ms baseline produced repeated 0-30 percent ESP-NOW ACK windows and automatic transitions without a controlled fault; subsequent 470 ms calibration produced 427/427 ACKs across 40 windows with no transitions"
+    },
+    {
+      "started_at": "2026-11-08T17:32:35+03:00",
+      "sender": "node32",
+      "fault_receiver": "node8266",
+      "status": "excluded",
+      "reason": "470 ms controlled fallback succeeded, but independent 470 ms UDP and 1000 ms ESP-NOW recovery schedules drifted into the same radio slots; after ACK restoration recovery delivered 75/135 ACKs (55.6 percent), UDP delivered 255/288 ACKs (88.5 percent), and the longest qualifying recovery streak was two windows"
+    },
+    {
+      "started_at": "2026-11-08T17:52:35+03:00",
+      "sender": "node32",
+      "fault_receiver": "node8266",
+      "status": "excluded",
+      "reason": "235 ms recovery guard was insufficient for ESP8266: after ACK restoration ESP-NOW recovery delivered 154/305 ACKs (50.5 percent), UDP delivered 582/613 ACKs (94.9 percent), and the longest qualifying recovery streak was one window"
+    },
+    {
+      "started_at": "2026-11-08T18:49:55+03:00",
+      "sender": "node32",
+      "fault_receiver": "node8266",
+      "status": "excluded",
+      "reason": "strictly alternating 470 ms radio slots produced a correct fallback but phase-dependent recovery: after ACK restoration ESP-NOW delivered 46/234 ACKs (19.7 percent) while UDP delivered 225/234 ACKs (96.2 percent); recovery eventually occurred after 224.2 seconds, exceeding the 30-second acceptance limit and motivating explicit Wi-Fi power-save disablement"
+    },
+    {
+      "started_at": "2026-11-08T20:25:52.949+03:00",
+      "sender": "node32",
+      "fault_receiver": "node8266",
+      "status": "excluded",
+      "reason": "otherwise successful no-sleep attempt excluded because ACK suppression began only 20.260 seconds after preparation instead of the prescribed 30 seconds; three stabilization windows completed but only one ordinary baseline window was observed before fault injection"
+    }
+  ],
+  "configuration_revision": {
+    "changed_after_pilot": true,
+    "old_recovery_success_pct": 90,
+    "new_recovery_success_pct": 80,
+    "rationale": "with five recovery probes per window, 90 percent requires 5/5; 80 percent accepts 4/5 while remaining above the 70 percent fallback boundary and still requiring three consecutive good windows",
+    "old_probe_interval_ms": 500,
+    "new_probe_interval_ms": 470,
+    "probe_calibration": {
+      "windows": 40,
+      "probes": 427,
+      "acks": 427,
+      "success_pct": 100.0,
+      "transitions": 0,
+      "rationale": "470 ms avoids the repeatable low-ACK phase observed at 500 ms while preserving approximately ten probes per five-second window"
+    },
+    "recovery_scheduling_revision": {
+      "initial_guard_ms": 235,
+      "final_guard_ms": 470,
+      "recovery_probe_interval_ms": 940,
+      "strategy": "alternate UDP and ESP-NOW recovery transmissions in separate 470 ms radio slots",
+      "rationale": "the half-interval guard still produced only 50.5 percent recovery ACK success on ESP8266; a full slot isolates both the transmission and application ACK of each transport"
+    },
+    "wifi_power_save_revision": {
+      "enabled": false,
+      "telemetry_field": "wifi_power_save",
+      "rationale": "the full-slot diagnostic remained in a low ESP-NOW ACK phase for 224.2 seconds before three qualifying windows; keeping the shared Wi-Fi radio awake removes DTIM/modem-sleep phase as an uncontrolled variable"
+    }
+  },
+  "result_summary": "experiments/results/failover_8266_32_controlled_5x_20261108_summary.json",
+  "raw_logs": [
+    {
+      "path": "experiments/raw/serial_20261107_192628.jsonl",
+      "status": "completed",
+      "size_bytes": 1608255,
+      "sha256": "64c8c0fe773504a951e6a0d8a4620c4c6b0a05c75a2ec54262812b62b84bb494",
+      "last_host_time": "2026-11-07T19:57:55.198+03:00",
+      "note": "contains excluded diagnostic attempts and the watchdog/invalid-header failure that interrupted the first 80-percent recovery run"
+    },
+    {
+      "path": "experiments/raw/serial_20261108_165719.jsonl",
+      "status": "completed",
+      "size_bytes": 129973,
+      "sha256": "feace588bd1ef8b1ecdf56b40485d22ecf13649b3dbf35698a3142fb11a2b16a",
+      "last_host_time": "2026-11-08T17:07:15.702+03:00",
+      "note": "contains the excluded startup/post-recovery stabilization diagnostic that motivated the three-window holdoff"
+    },
+    {
+      "path": "experiments/raw/serial_20261108_171540.jsonl",
+      "status": "completed",
+      "size_bytes": 352861,
+      "sha256": "4b49c0b473650f3d43d1326ccb736337746c494474daa29288de5805789063c6",
+      "last_host_time": "2026-11-08T17:42:49.975+03:00",
+      "note": "contains the 500 ms false-transition diagnostic, the 470 ms 427/427 baseline calibration, and the recovery-slot collision diagnostic"
+    },
+    {
+      "path": "experiments/raw/serial_20261108_174942.jsonl",
+      "status": "completed",
+      "size_bytes": 374847,
+      "sha256": "d63fc6359be625de8a245ab0ecdf660cc5a6ccc945dbb7d2952725554d4f49ba",
+      "last_host_time": "2026-11-08T18:06:31.517+03:00",
+      "note": "contains the excluded full-slot guard diagnostic: ESP-NOW recovery ACK success remained 50.5 percent, motivating strict alternating UDP and ESP-NOW recovery slots"
+    },
+    {
+      "path": "experiments/raw/serial_20261108_184659.jsonl",
+      "status": "completed",
+      "size_bytes": 484099,
+      "sha256": "6537525cbaf53449af5ab3e8ef22abe93206c338706aaa8d7c2970393fc461ac",
+      "last_host_time": "2026-11-08T19:11:15.344+03:00",
+      "note": "contains the excluded strict-slot diagnostic: controlled fallback succeeded, but ESP-NOW recovery took 224.2 seconds and motivated explicit Wi-Fi power-save disablement"
+    },
+    {
+      "path": "experiments/raw/serial_20261108_193335.jsonl",
+      "status": "completed",
+      "size_bytes": 1945740,
+      "sha256": "7a37dd22f5cc02890bba63de9c050b31e685632c0d6f44509b32b80c01e7229b",
+      "last_host_time": "2026-11-08T23:53:01.392+03:00",
+      "note": "contains all five valid no-sleep repetitions and the excluded early fifth attempt"
+    }
+  ]
+}

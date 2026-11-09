@@ -1,0 +1,112 @@
+{
+  "schema": "wlf.experiment-summary.v1",
+  "test_id": "failover_8266_32_controlled_5x_20261108",
+  "date": "2026-11-08",
+  "valid_runs": 5,
+  "excluded_diagnostic_attempts": 10,
+  "distance_cm": 100,
+  "access_point": {
+    "ssid": "Lab-2G",
+    "band_ghz": 2.4,
+    "channel": 6
+  },
+  "configuration": {
+    "probe_interval_ms": 470,
+    "window_ms": 5000,
+    "fallback_loss_pct": 30,
+    "recovery_success_pct": 80,
+    "bad_windows_required": 2,
+    "good_windows_required": 3,
+    "recovery_probe_offset_ms": 235,
+    "recovery_probe_interval_ms": 940,
+    "recovery_probe_guard_ms": 470,
+    "espnow_stabilization_windows": 3,
+    "wifi_power_save": false
+  },
+  "overall": {
+    "successful_fallbacks": 5,
+    "successful_recoveries": 5,
+    "baseline_espnow_probes": 308,
+    "baseline_espnow_acks": 308,
+    "baseline_espnow_success_pct": 100.0,
+    "fallback_reaction_ms": {
+      "minimum": 6678,
+      "average": 7689.0,
+      "median": 8077,
+      "maximum": 8657
+    },
+    "recovery_reaction_ms": {
+      "minimum": 14165,
+      "average": 15214.0,
+      "median": 14472,
+      "maximum": 18278
+    },
+    "udp_reserve": {
+      "observed_probes": 133,
+      "observed_acks": 120,
+      "success_pct": 90.226
+    },
+    "final_recovery_windows": {
+      "espnow_probes": 80,
+      "espnow_acks": 77,
+      "success_pct": 96.25
+    },
+    "time_in_udp_ms": {
+      "minimum": 19998,
+      "average": 25013.2,
+      "median": 25015,
+      "maximum": 30033
+    }
+  },
+  "directions": [
+    {
+      "sender": "node32",
+      "receiver": "node8266",
+      "runs": 3,
+      "baseline_espnow_probes": 181,
+      "baseline_espnow_acks": 181,
+      "baseline_espnow_success_pct": 100.0,
+      "fallback_reaction_ms_average": 7357.667,
+      "fallback_reaction_ms_median": 6738,
+      "recovery_reaction_ms_average": 15811.0,
+      "recovery_reaction_ms_median": 14851,
+      "udp_probes": 90,
+      "udp_acks": 86,
+      "udp_success_pct": 95.556,
+      "time_in_udp_ms_average": 28355.0
+    },
+    {
+      "sender": "node8266",
+      "receiver": "node32",
+      "runs": 2,
+      "baseline_espnow_probes": 127,
+      "baseline_espnow_acks": 127,
+      "baseline_espnow_success_pct": 100.0,
+      "fallback_reaction_ms_average": 8186.0,
+      "fallback_reaction_ms_median": 8186.0,
+      "recovery_reaction_ms_average": 14318.5,
+      "recovery_reaction_ms_median": 14318.5,
+      "udp_probes": 43,
+      "udp_acks": 34,
+      "udp_success_pct": 79.07,
+      "time_in_udp_ms_average": 20000.5
+    }
+  ],
+  "runs": [
+    "experiments/results/failover_8266_32_repeat_01_20261108.json",
+    "experiments/results/failover_8266_32_repeat_02_20261108.json",
+    "experiments/results/failover_8266_32_repeat_03_20261108.json",
+    "experiments/results/failover_8266_32_repeat_04_20261108.json",
+    "experiments/results/failover_8266_32_repeat_05_20261108.json"
+  ],
+  "raw_logs": [
+    "experiments/raw/serial_20261108_193335.jsonl"
+  ],
+  "raw_log_sha256": {
+    "experiments/raw/serial_20261108_193335.jsonl": "7a37dd22f5cc02890bba63de9c050b31e685632c0d6f44509b32b80c01e7229b"
+  },
+  "integrity_status": "completed",
+  "interpretation": "All five controlled faults caused automatic fallback and all five runs returned automatically to ESP-NOW. With Wi-Fi power saving disabled, recovery remained within 14.165-18.278 seconds and required no more than one nonqualifying window. Baseline ESP-NOW delivery was 308/308 ACK, while reserve UDP delivered 120/133 observed application ACKs.",
+  "direction_observation": "Recovery was consistent in both directions. The lower aggregate UDP ACK rate for node8266 as sender is based on only two runs and should be treated as an observation for further testing rather than a directional conclusion.",
+  "scope_limitation": "The experiment validates the decision algorithm using controlled application-ACK suppression at one-metre spacing. It does not by itself characterize physical attenuation, interference range, complete node failure, energy consumption, or operation with Wi-Fi power saving enabled."
+}

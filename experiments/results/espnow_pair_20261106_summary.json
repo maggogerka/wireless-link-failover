@@ -1,0 +1,41 @@
+{
+  "schema": "wlf.experiment-summary.v1",
+  "test_id": "espnow_pair_20261106_034141",
+  "captured_at": "2026-11-06T00:41:41Z",
+  "duration_seconds": 14,
+  "channel": 1,
+  "packet_version": 1,
+  "packet_size_bytes": 20,
+  "nodes": {
+    "node8266": {
+      "serial_port": "COM6",
+      "station_mac": "24:4C:AB:6C:86:8D"
+    },
+    "node32s3": {
+      "serial_port": "COM7",
+      "station_mac": "94:A9:90:D2:E6:94"
+    }
+  },
+  "directions": {
+    "node32s3_to_node8266": {
+      "received": 8,
+      "valid_crc": 8,
+      "rssi_available": false
+    },
+    "node8266_to_node32s3": {
+      "received": 7,
+      "valid_crc": 7,
+      "rssi_dbm_observed_min": -6,
+      "rssi_dbm_observed_max": -4
+    }
+  },
+  "total_received": 15,
+  "total_valid_crc": 15,
+  "result": "bidirectional_compatibility_observed",
+  "limitations": [
+    "short bench test at very small distance",
+    "broadcast transmission has no link-layer acknowledgement",
+    "ESP8266 legacy receive callback does not expose RSSI"
+  ],
+  "raw_log": "experiments/raw/espnow_pair_20261106_034141.jsonl"
+}

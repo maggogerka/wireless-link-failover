@@ -1,0 +1,9 @@
+* text=auto
+*.cpp text eol=lf
+*.h text eol=lf
+*.ini text eol=lf
+*.jsonl text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.cmd text eol=crlf
+

@@ -1,0 +1,82 @@
+{
+  "schema": "wlf.experiment-plan.v1",
+  "test_id": "failover_8266_s3_repetitions_20261106",
+  "status": "complete",
+  "distance_cm": 100,
+  "probe_interval_ms": 500,
+  "window_ms": 5000,
+  "fallback_loss_pct": 30,
+  "recovery_success_pct": 90,
+  "bad_windows_required": 2,
+  "good_windows_required": 3,
+  "fault": "suppress ESP-NOW application ACK on the receiver while leaving Wi-Fi and UDP active",
+  "baseline_result": "experiments/results/failover_8266_s3_100cm_20261106_summary.json",
+  "runs": [
+    {
+      "repeat": 1,
+      "sender": "node32s3",
+      "fault_receiver": "node8266",
+      "status": "complete",
+      "result": "experiments/results/failover_8266_s3_repeat_01_20261107.json"
+    },
+    {
+      "repeat": 2,
+      "sender": "node8266",
+      "fault_receiver": "node32s3",
+      "status": "complete",
+      "result": "experiments/results/failover_8266_s3_repeat_02_20261107.json"
+    },
+    {
+      "repeat": 3,
+      "sender": "node8266",
+      "fault_receiver": "node32s3",
+      "status": "complete",
+      "result": "experiments/results/failover_8266_s3_repeat_03_20261107.json"
+    },
+    {
+      "repeat": 4,
+      "sender": "node32s3",
+      "fault_receiver": "node8266",
+      "status": "complete",
+      "result": "experiments/results/failover_8266_s3_repeat_04_20261107.json"
+    },
+    {
+      "repeat": 5,
+      "sender": "node32s3",
+      "fault_receiver": "node8266",
+      "status": "complete",
+      "result": "experiments/results/failover_8266_s3_repeat_05_20261107.json"
+    }
+  ],
+  "excluded_attempts": [
+    {
+      "attempt": 0,
+      "raw_log": "experiments/raw/serial_20261106_232909.jsonl",
+      "reason": "Both boards returned unknown_command for ESPNOW ACK ON/OFF; the GUI was updated but the new firmware had not been flashed. No controlled fault was applied, so this attempt is excluded."
+    },
+    {
+      "attempt": 1,
+      "raw_log": "experiments/raw/serial_20261106_234248.jsonl",
+      "reason": "node32s3 switched to UDP before controlled ACK suppression: the first two ESP-NOW windows were already 70% and 20% while both failover state machines transmitted synchronized probes. ACK suppression began 16.9 seconds after the transition, and no automatic recovery occurred. The method was changed to one active failover sender and one passive responder; this attempt is excluded."
+    },
+    {
+      "attempt": 2,
+      "raw_log": "experiments/raw/serial_20261106_235225.jsonl",
+      "reason": "The single-sender method produced a stable 90-100% ESP-NOW baseline and a valid automatic fallback after controlled ACK suppression, but recovery stayed at 0-40% after ACK restoration. UDP and recovery ESP-NOW probes were scheduled in the same poll cycle on the shared radio. Recovery probes were subsequently offset by half of the active probe interval; this diagnostic attempt is excluded."
+    },
+    {
+      "attempt": 3,
+      "raw_log": "experiments/raw/serial_20261107_002009.jsonl",
+      "reason": "The 250 ms recovery offset was validated: after ACK restoration, three consecutive 5/5 ESP-NOW recovery windows caused an automatic UDP-to-ESP-NOW transition. However, fallback occurred 8.5 seconds before controlled ACK suppression, and the passive receiver had not joined Wi-Fi when preparation attempted UDP START. GUI readiness and state guards were added; this diagnostic attempt is excluded from controlled repetitions."
+    }
+  ],
+  "result_summary": "experiments/results/failover_8266_s3_controlled_5x_20261107_summary.json",
+  "raw_logs": [
+    "experiments/raw/serial_20261107_002514.jsonl",
+    "experiments/raw/serial_20261107_190032.jsonl"
+  ],
+  "raw_log_sha256": {
+    "experiments/raw/serial_20261107_002514.jsonl": "4e9eca991c25a0858936eed7912521305819700a7d5901dbc4829295f1cac618",
+    "experiments/raw/serial_20261107_190032.jsonl": "438089a4b8b28674cb3ada1a0d267df1e1b39c1f0dedc01777c1700ab73901ec"
+  }
+}

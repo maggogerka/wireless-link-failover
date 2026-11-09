@@ -1,0 +1,87 @@
+{
+  "schema": "wlf.experiment-run.v1",
+  "test_id": "failover_8266_32_repeat_03_20261108",
+  "date": "2026-11-08",
+  "valid": true,
+  "repeat": 3,
+  "sender": "node8266",
+  "fault_receiver": "node32",
+  "distance_cm": 100,
+  "access_point": {
+    "ssid": "Lab-2G",
+    "band_ghz": 2.4,
+    "channel": 6
+  },
+  "configuration": {
+    "probe_interval_ms": 470,
+    "window_ms": 5000,
+    "fallback_loss_pct": 30,
+    "recovery_success_pct": 80,
+    "bad_windows_required": 2,
+    "good_windows_required": 3,
+    "recovery_probe_offset_ms": 235,
+    "recovery_probe_interval_ms": 940,
+    "recovery_probe_guard_ms": 470,
+    "espnow_stabilization_windows": 3,
+    "wifi_power_save": false
+  },
+  "baseline": {
+    "complete_windows": 6,
+    "espnow_probes": 63,
+    "espnow_acks": 63,
+    "success_pct": 100.0
+  },
+  "controlled_fault": {
+    "type": "espnow_ack_suppression",
+    "enabled_at": "2026-11-08T20:02:41.245+03:00",
+    "disabled_at": "2026-11-08T20:02:54.853+03:00",
+    "duration_ms": 13608
+  },
+  "fallback": {
+    "transition_at": "2026-11-08T20:02:49.322+03:00",
+    "from": "esp-now",
+    "to": "udp",
+    "reason": "espnow_ack_loss_threshold",
+    "reaction_from_fault_ms": 8077,
+    "reported_evidence_duration_ms": 5000,
+    "degradation_windows": [
+      {
+        "espnow_probes": 11,
+        "espnow_acks": 4,
+        "espnow_success_pct": 36
+      },
+      {
+        "espnow_probes": 11,
+        "espnow_acks": 0,
+        "espnow_success_pct": 0
+      }
+    ],
+    "combined_espnow_success_pct": 18.182,
+    "combined_espnow_loss_pct": 81.818
+  },
+  "udp_reserve": {
+    "time_in_udp_ms": 20003,
+    "observed_probes": 21,
+    "observed_acks": 15,
+    "success_pct": 71.429
+  },
+  "recovery": {
+    "transition_at": "2026-11-08T20:03:09.325+03:00",
+    "from": "udp",
+    "to": "esp-now",
+    "reason": "espnow_recovery_threshold",
+    "reaction_from_fault_removal_ms": 14472,
+    "final_consecutive_good_windows": 3,
+    "final_good_window_probes": 16,
+    "final_good_window_acks": 15,
+    "final_good_window_success_pct": 93.75,
+    "window_success_pct": [83, 100, 100]
+  },
+  "final_state": {
+    "active_transport": "esp-now",
+    "automatic": true,
+    "switch_count": 2
+  },
+  "interpretation": "Valid controlled repetition with ESP8266 as sender and Wi-Fi power saving disabled. Automatic fallback and minimum-window recovery both succeeded; UDP application ACK delivery was lower than in the preceding runs and is retained as measured variability rather than discarded.",
+  "raw_log": "experiments/raw/serial_20261108_193335.jsonl"
+}

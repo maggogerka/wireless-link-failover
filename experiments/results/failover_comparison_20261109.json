@@ -1,0 +1,221 @@
+{
+  "schema": "wlf.failover-comparison.v1",
+  "comparison_id": "failover_esp32_vs_esp32s3_descriptive_20261109",
+  "date": "2026-11-09",
+  "classification": "descriptive_only",
+  "reason": "Source series used non-identical recovery settings, and Wi-Fi power saving was explicitly disabled only in the ESP32 series.",
+  "common_conditions": {
+    "valid_runs_per_series": 5,
+    "distance_cm": 100,
+    "ssid": "Lab-2G",
+    "band_ghz": 2.4,
+    "channel": 6,
+    "fault_type": "controlled_espnow_application_ack_suppression"
+  },
+  "configuration_differences": [
+    {
+      "parameter": "probe_interval_ms",
+      "esp32": 470,
+      "esp32_s3": 500
+    },
+    {
+      "parameter": "recovery_success_pct",
+      "esp32": 80,
+      "esp32_s3": 90
+    },
+    {
+      "parameter": "recovery_probe_offset_ms",
+      "esp32": 235,
+      "esp32_s3": 250
+    },
+    {
+      "parameter": "recovery_probe_interval_ms",
+      "esp32": 940,
+      "esp32_s3": "not_recorded"
+    },
+    {
+      "parameter": "recovery_probe_guard_ms",
+      "esp32": 470,
+      "esp32_s3": "not_recorded"
+    },
+    {
+      "parameter": "espnow_stabilization_windows",
+      "esp32": 3,
+      "esp32_s3": "not_recorded"
+    },
+    {
+      "parameter": "wifi_power_save",
+      "esp32": false,
+      "esp32_s3": "not_recorded"
+    }
+  ],
+  "series": [
+    {
+      "key": "esp32",
+      "label": "ESP8266↔ESP32",
+      "short_label": "ESP32",
+      "color": "#2563EB",
+      "source_summary": "experiments/results/failover_8266_32_controlled_5x_20261108_summary.json",
+      "configuration": {
+        "probe_interval_ms": 470,
+        "window_ms": 5000,
+        "fallback_loss_pct": 30,
+        "recovery_success_pct": 80,
+        "bad_windows_required": 2,
+        "good_windows_required": 3,
+        "recovery_probe_offset_ms": 235,
+        "recovery_probe_interval_ms": 940,
+        "recovery_probe_guard_ms": 470,
+        "espnow_stabilization_windows": 3,
+        "wifi_power_save": false
+      },
+      "valid_runs": 5,
+      "successful_fallbacks": 5,
+      "successful_recoveries": 5,
+      "baseline_espnow_success_pct": 100.0,
+      "udp_success_pct": 90.226,
+      "fallback_reaction_ms": [
+        6738,
+        8295,
+        8077,
+        8657,
+        6678
+      ],
+      "fallback_reaction_ms_descriptive": {
+        "minimum": 6678,
+        "average": 7689,
+        "median": 8077,
+        "maximum": 8657,
+        "sample_standard_deviation": 919.419
+      },
+      "recovery_reaction_ms": [
+        14304,
+        14165,
+        14472,
+        18278,
+        14851
+      ],
+      "recovery_reaction_ms_descriptive": {
+        "minimum": 14165,
+        "average": 15214,
+        "median": 14472,
+        "maximum": 18278,
+        "sample_standard_deviation": 1731.974
+      },
+      "time_in_udp_ms": [
+        30033,
+        19998,
+        20003,
+        25015,
+        30017
+      ],
+      "time_in_udp_ms_descriptive": {
+        "minimum": 19998,
+        "average": 25013.2,
+        "median": 25015,
+        "maximum": 30033,
+        "sample_standard_deviation": 5012.254
+      },
+      "runs": [
+        "experiments/results/failover_8266_32_repeat_01_20261108.json",
+        "experiments/results/failover_8266_32_repeat_02_20261108.json",
+        "experiments/results/failover_8266_32_repeat_03_20261108.json",
+        "experiments/results/failover_8266_32_repeat_04_20261108.json",
+        "experiments/results/failover_8266_32_repeat_05_20261108.json"
+      ]
+    },
+    {
+      "key": "esp32_s3",
+      "label": "ESP8266↔ESP32-S3",
+      "short_label": "ESP32-S3",
+      "color": "#EA580C",
+      "source_summary": "experiments/results/failover_8266_s3_controlled_5x_20261107_summary.json",
+      "configuration": {
+        "probe_interval_ms": 500,
+        "window_ms": 5000,
+        "fallback_loss_pct": 30,
+        "recovery_success_pct": 90,
+        "bad_windows_required": 2,
+        "good_windows_required": 3,
+        "recovery_probe_offset_ms": 250
+      },
+      "valid_runs": 5,
+      "successful_fallbacks": 5,
+      "successful_recoveries": 5,
+      "baseline_espnow_success_pct": 99.617,
+      "udp_success_pct": 92.093,
+      "fallback_reaction_ms": [
+        6656,
+        10179,
+        8686,
+        8464,
+        9764
+      ],
+      "fallback_reaction_ms_descriptive": {
+        "minimum": 6656,
+        "average": 8749.8,
+        "median": 8686,
+        "maximum": 10179,
+        "sample_standard_deviation": 1373.041
+      },
+      "recovery_reaction_ms": [
+        55348,
+        15039,
+        15311,
+        15307,
+        51664
+      ],
+      "recovery_reaction_ms_descriptive": {
+        "minimum": 15039,
+        "average": 30533.8,
+        "median": 15311,
+        "maximum": 55348,
+        "sample_standard_deviation": 21011.353
+      },
+      "time_in_udp_ms": [
+        80005,
+        24996,
+        24989,
+        25035,
+        60018
+      ],
+      "time_in_udp_ms_descriptive": {
+        "minimum": 24989,
+        "average": 43008.6,
+        "median": 25035,
+        "maximum": 80005,
+        "sample_standard_deviation": 25643.047
+      },
+      "runs": [
+        "experiments/results/failover_8266_s3_repeat_01_20261107.json",
+        "experiments/results/failover_8266_s3_repeat_02_20261107.json",
+        "experiments/results/failover_8266_s3_repeat_03_20261107.json",
+        "experiments/results/failover_8266_s3_repeat_04_20261107.json",
+        "experiments/results/failover_8266_s3_repeat_05_20261107.json"
+      ]
+    }
+  ],
+  "observed_differences": {
+    "fallback_average_ms_esp32_minus_esp32s3": -1060.8,
+    "recovery_average_ms_esp32_minus_esp32s3": -15319.8,
+    "baseline_success_percentage_points_esp32_minus_esp32s3": 0.383,
+    "udp_success_percentage_points_esp32_minus_esp32s3": -1.867
+  },
+  "conclusion": "Both implementations completed automatic fallback and recovery in all five runs. The ESP32 series had less variable recovery after Wi-Fi power saving was disabled, but the hardware effect cannot be isolated from the changed recovery threshold and scheduler.",
+  "required_standardized_follow_up": {
+    "same_firmware_revision": true,
+    "wifi_power_save": false,
+    "probe_interval_ms": 470,
+    "window_ms": 5000,
+    "fallback_loss_pct": 30,
+    "recovery_success_pct": 80,
+    "bad_windows_required": 2,
+    "good_windows_required": 3,
+    "recovery_probe_interval_ms": 940,
+    "recovery_probe_guard_ms": 470,
+    "espnow_stabilization_windows": 3,
+    "recommended_runs_per_direction_per_pair": 5,
+    "randomize_direction_order": true
+  },
+  "figure": "experiments/figures/failover_comparison_20261109.svg"
+}

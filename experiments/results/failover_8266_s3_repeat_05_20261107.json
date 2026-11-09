@@ -1,0 +1,85 @@
+{
+  "schema": "wlf.experiment-run.v1",
+  "test_id": "failover_8266_s3_repeat_05_20261107",
+  "date": "2026-11-07",
+  "valid": true,
+  "repeat": 5,
+  "sender": "node32s3",
+  "fault_receiver": "node8266",
+  "distance_cm": 100,
+  "access_point": {
+    "ssid": "Lab-2G",
+    "band_ghz": 2.4,
+    "channel": 6,
+    "node32s3_rssi_dbm": -61,
+    "node8266_rssi_dbm": -73
+  },
+  "configuration": {
+    "probe_interval_ms": 500,
+    "window_ms": 5000,
+    "fallback_loss_pct": 30,
+    "recovery_success_pct": 90,
+    "bad_windows_required": 2,
+    "good_windows_required": 3,
+    "recovery_probe_offset_ms": 250
+  },
+  "baseline": {
+    "complete_windows": 5,
+    "espnow_probes": 51,
+    "espnow_acks": 50,
+    "success_pct": 98.039
+  },
+  "controlled_fault": {
+    "type": "espnow_ack_suppression",
+    "enabled_at": "2026-11-07T19:13:10.688+03:00",
+    "disabled_at": "2026-11-07T19:13:28.806+03:00",
+    "duration_ms": 18118
+  },
+  "fallback": {
+    "transition_at": "2026-11-07T19:13:20.452+03:00",
+    "from": "esp-now",
+    "to": "udp",
+    "reason": "espnow_ack_loss_threshold",
+    "reaction_from_fault_ms": 9764,
+    "reported_evidence_duration_ms": 5000,
+    "degradation_windows": [
+      {
+        "espnow_probes": 10,
+        "espnow_acks": 1,
+        "espnow_success_pct": 10
+      },
+      {
+        "espnow_probes": 10,
+        "espnow_acks": 0,
+        "espnow_success_pct": 0
+      }
+    ],
+    "combined_espnow_success_pct": 5.0,
+    "combined_espnow_loss_pct": 95.0
+  },
+  "udp_reserve": {
+    "time_in_udp_ms": 60018,
+    "observed_probes": 120,
+    "observed_acks": 104,
+    "success_pct": 86.667
+  },
+  "recovery": {
+    "transition_at": "2026-11-07T19:14:20.470+03:00",
+    "from": "udp",
+    "to": "esp-now",
+    "reason": "espnow_recovery_threshold",
+    "reaction_from_fault_removal_ms": 51664,
+    "final_consecutive_good_windows": 3,
+    "final_good_window_probes": 15,
+    "final_good_window_acks": 15,
+    "final_good_window_success_pct": 100.0
+  },
+  "final_state": {
+    "active_transport": "esp-now",
+    "automatic": true,
+    "switch_count": 2
+  },
+  "interpretation": "Valid controlled repetition in the ESP32-S3-to-ESP8266 direction. Fallback followed two degraded windows and recovery was automatic, but intermittent recovery ACK delivery prolonged the return decision to 51.664 seconds.",
+  "observation": "ACK ON was issued twice while waiting; the first event at 19:13:28.806 was used as the fault-removal time because ACK responses were already enabled after it.",
+  "raw_log": "experiments/raw/serial_20261107_190032.jsonl"
+}
