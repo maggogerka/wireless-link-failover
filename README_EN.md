@@ -12,6 +12,12 @@ The primary transport sends short packets directly over ESP-NOW. When applicatio
 
 One hardware pair is active in each cycle. ESP-NOW carries `probe` packets and application-level acknowledgements directly between the nodes. Backup UDP traffic passes through the access point. The control computer manages both boards over USB Serial and records their telemetry in a JSON Lines log. The third node does not participate in that cycle.
 
+## Transport selection
+
+![Transport selection state machine](docs/assets/state_machine_en.svg)
+
+Every entry into ESP-NOW includes three stabilization windows. Fallback requires two degraded windows, connected Wi-Fi and active UDP. Recovery requires three qualifying ESP-NOW windows. The diagram shows the tested configuration; loss of Wi-Fi separately forces a return to ESP-NOW.
+
 ## Results
 
 ![Results of 15 controlled cycles](docs/assets/results_en.svg)

@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
+import { architecture as scientificArchitecture, stateMachine as scientificStateMachine } from "./scientific_schematics.mjs";
 
 const require = createRequire(import.meta.url);
 let sharp;
@@ -330,17 +331,19 @@ async function buildConsoleScreenshot() {
 }
 
 const hardwareOnly = process.argv.includes("--hardware-only");
+const schematicsOnly = process.argv.includes("--schematics-only");
 
 if (!hardwareOnly) {
   for (const lang of ["ru", "en"]) {
-    await writeSvgAndPng(`architecture_${lang}`, architecture(lang), 2200);
-    await writeSvgAndPng(`state_machine_${lang}`, stateMachine(lang), 2200);
+    await writeSvgAndPng(`architecture_${lang}`, scientificArchitecture(lang), 2400);
+    await writeSvgAndPng(`state_machine_${lang}`, scientificStateMachine(lang), 2400);
+    if (schematicsOnly) continue;
     await writeSvgAndPng(`timeline_${lang}`, timeline(lang), 2200);
     await writeSvgAndPng(`results_${lang}`, results(lang), 2400);
   }
 }
-await buildHardwareMontage();
-if (!hardwareOnly) await buildConsoleScreenshot();
+if (!schematicsOnly) await buildHardwareMontage();
+if (!hardwareOnly && !schematicsOnly) await buildConsoleScreenshot();
 
 for (const directory of [DOCS, ARTICLE]) {
   for (const file of fs.readdirSync(directory).sort()) {
